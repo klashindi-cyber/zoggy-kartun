@@ -294,18 +294,73 @@ const categories = [
 উদাহরণ: image:"images/character-01.jpg"
 */
 const products = [];
+
 categories.forEach(c => {
-  for (let i=1;i<=10;i++) {
+  for (let i = 1; i <= 10; i++) {
     products.push({
-      id:c.id+"-"+i,
-      category:c.id,
-      name:c.name+" "+String(i).padStart(2,"0"),
-      price:99,
-image:"https://raw.githubusercontent.com/klashindi-cyber/zoggy-kartur/main/character-01.jpg"
+      id: c.id + "-" + i,
+      category: c.id,
+      name: c.name + " " + String(i).padStart(2, "0"),
+      price: 99,
+      image: ""
     });
   }
 });
 
+// ১০টি ক্যারেক্টারের আলাদা নাম ও ছবি
+const characterProducts = [
+  {
+    id: "character-1",
+    name: "কার্টুন ক্যারেক্টার 01",
+    image: "https://raw.githubusercontent.com/klashindi-cyber/zoggy-kartur/main/character-01.jpg"
+  },
+  {
+    id: "character-2",
+    name: "কার্টুন ক্যারেক্টার 02",
+    image: "https://raw.githubusercontent.com/klashindi-cyber/zoggy-kartur/main/character-02.jpg"
+  },
+  {
+    id: "character-3",
+    name: "কার্টুন ক্যারেক্টার 03",
+    image: "https://raw.githubusercontent.com/klashindi-cyber/zoggy-kartur/main/character-03.jpg"
+  },
+  {
+    id: "character-4",
+    name: "কার্টুন ক্যারেক্টার 04",
+    image: "https://raw.githubusercontent.com/klashindi-cyber/zoggy-kartur/main/character-04.jpg"
+  },
+  {
+    id: "character-5",
+    name: "কার্টুন ক্যারেক্টার 05",
+    image: "https://raw.githubusercontent.com/klashindi-cyber/zoggy-kartur/main/character-05.jpg"
+  },
+  {
+    id: "character-6",
+    name: "কার্টুন ক্যারেক্টার 06",
+    image: "https://raw.githubusercontent.com/klashindi-cyber/zoggy-kartur/main/character-06.jpg"
+  },
+  {
+    id: "character-7",
+    name: "কার্টুন ক্যারেক্টার 07",
+    image: "https://raw.githubusercontent.com/klashindi-cyber/zoggy-kartur/main/character-07.jpg"
+  },
+  {
+    id: "character-8",
+    name: "কার্টুন ক্যারেক্টার 08",
+    image: "https://raw.githubusercontent.com/klashindi-cyber/zoggy-kartur/main/character-08.jpg"
+  },
+  {
+    id: "character-9",
+    name: "কার্টুন ক্যারেক্টার 09",
+    image: "https://raw.githubusercontent.com/klashindi-cyber/zoggy-kartur/main/character-09.jpg"
+  },
+  {
+    id: "character-10",
+    name: "কার্টুন ক্যারেক্টার 10",
+    image: "https://raw.githubusercontent.com/klashindi-cyber/zoggy-kartur/main/character-10.jpg"
+  }
+];
+products.push(...characterProducts);
 let selectedCategory="all";
 let cart={};
 
