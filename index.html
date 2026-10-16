@@ -3,459 +3,835 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#111827">
-<meta name="description" content="ZOGGY KARTUN - Cartoon Characters, Backgrounds, Props and Packs">
-<title>ZOGGY KARTUN</title>
+<meta name="theme-color" content="#17112d">
+<title>ZOGGY KARTUN - Cartoon Assets Store</title>
 
 <style>
+:root {
+  --bg: #f5f3ff;
+  --card: #ffffff;
+  --text: #242039;
+  --muted: #77728d;
+  --purple: #7038ed;
+  --pink: #e444b0;
+  --line: #e7e2f2;
+}
+
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
-:root {
-  --bg: #f4f6fb;
-  --card: #ffffff;
-  --text: #182033;
-  --primary: #6c3df4;
-  --border: #e1e5ef;
-}
-
-body.dark {
-  --bg: #10131c;
-  --card: #1b2030;
-  --text: #f5f6ff;
-  --border: #30364a;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
   font-family: Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
-  transition: background .2s, color .2s;
 }
 
-button, input, select {
+body.dark {
+  --bg: #11111b;
+  --card: #202031;
+  --text: #ffffff;
+  --muted: #c0bbd2;
+  --line: #39364c;
+}
+
+button,
+input,
+select {
   font: inherit;
 }
 
-button {
+button,
+a {
   cursor: pointer;
-  border: 0;
-  border-radius: 8px;
-  padding: 10px 14px;
 }
 
 header {
+  text-align: center;
   background: #17112d;
   color: white;
-  padding: 18px 15px;
-  text-align: center;
+  padding: 27px 12px;
 }
 
 .logo {
-  font-size: 30px;
-  font-weight: bold;
-  color: #ffd447;
+  font-size: 35px;
+  font-weight: 900;
+  color: #ffdd58;
 }
 
-.watermark {
-  font-size: 12px;
-  letter-spacing: 3px;
-  color: #d7d1ed;
+header p {
+  margin-bottom: 0;
 }
 
 nav {
   display: flex;
   justify-content: center;
-  gap: 10px;
   flex-wrap: wrap;
+  gap: 8px;
   padding: 12px;
   background: var(--card);
-  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--line);
 }
 
-nav button {
-  background: var(--primary);
+.btn {
+  display: inline-block;
+  padding: 11px 15px;
+  border: none;
+  border-radius: 10px;
+  background: var(--purple);
   color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn.green {
+  background: #16a765;
+}
+
+.btn.pink {
+  background: var(--pink);
 }
 
 .container {
-  width: min(1200px, 94%);
+  width: min(1150px, calc(100% - 24px));
   margin: auto;
 }
 
 .hero {
-  margin: 20px 0;
-  padding: 35px 20px;
-  border-radius: 16px;
   text-align: center;
+  padding: 40px 18px;
+  margin: 22px 0;
+  border-radius: 20px;
   color: white;
-  background: linear-gradient(135deg, #6c3df4, #ef4b9b);
+  background: linear-gradient(120deg, #7038ed, #e444b0);
 }
 
 .hero h1 {
-  font-size: clamp(25px, 5vw, 42px);
-  margin-bottom: 8px;
+  font-size: clamp(27px, 5vw, 42px);
 }
 
 .hero p {
-  margin-bottom: 15px;
+  line-height: 1.8;
 }
 
-.search-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 18px 0;
+section {
+  padding: 18px 0;
 }
 
-.search-row input,
-.search-row select {
-  flex: 1;
-  min-width: 150px;
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--card);
-  color: var(--text);
+h2 {
+  font-size: 25px;
 }
 
-.section-title {
-  margin: 25px 0 14px;
-  font-size: 23px;
-}
-
-.categories {
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 13px;
 }
 
-.category-btn {
-  padding: 17px 10px;
+.category,
+.card,
+.upload-card,
+.panel {
   background: var(--card);
-  color: var(--text);
-  border: 1px solid var(--border);
-  font-weight: bold;
-}
-
-.category-btn:hover {
-  background: var(--primary);
-  color: white;
-}
-
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 16px;
-  margin: 16px 0 35px;
-}
-
-.product {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 13px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
   overflow: hidden;
-  position: relative;
 }
 
-.product-image {
-  position: relative;
-  background: #e9e5ff;
-}
-
-.product-image img {
-  display: block;
-  width: 100%;
-  height: 190px;
-  object-fit: cover;
-}
-
-.image-watermark {
-  position: absolute;
-  bottom: 8px;
-  left: 0;
-  width: 100%;
+.category {
+  padding: 18px 10px;
   text-align: center;
-  color: white;
-  background: rgba(0,0,0,.48);
-  font-size: 12px;
-  letter-spacing: 2px;
-  pointer-events: none;
-}
-
-.badge {
-  position: absolute;
-  top: 9px;
-  left: 9px;
-  background: #ff3e65;
-  color: white;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 12px;
-}
-
-.favorite {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: white;
-  color: #e91e63;
-  font-size: 20px;
-  padding: 3px 8px;
-}
-
-.product-info {
-  padding: 13px;
-}
-
-.product-info h3 {
-  font-size: 17px;
-  margin-bottom: 5px;
-}
-
-.category-label {
-  font-size: 12px;
-  opacity: .75;
-}
-
-.price {
-  margin: 8px 0;
   font-weight: bold;
-  color: #16a34a;
-  font-size: 19px;
+  cursor: pointer;
+  transition: .2s;
 }
 
-.old-price {
-  color: #888;
-  text-decoration: line-through;
-  font-size: 13px;
-  margin-left: 5px;
+.category:hover,
+.card:hover {
+  transform: translateY(-4px);
 }
 
-.rating {
-  color: #f59e0b;
-  font-size: 14px;
-}
-
-.product-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 12px;
-}
-
-.product-actions button {
-  flex: 1;
-  min-width: 90px;
-  font-size: 13px;
-}
-
-.primary {
-  background: var(--primary);
-  color: white;
-}
-
-.secondary {
-  background: #e9e5ff;
-  color: #4021a5;
-}
-
-.whatsapp {
-  background: #20b85a;
-  color: white;
-}
-
-.notice {
-  padding: 14px;
-  border-radius: 10px;
-  background: var(--card);
-  border: 1px solid var(--border);
+.controls {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
   margin: 15px 0;
 }
 
-footer {
-  margin-top: 35px;
-  padding: 25px 15px;
-  background: #17112d;
-  color: white;
-  text-align: center;
-}
-
-footer a {
-  color: #ffd447;
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  background: rgba(0,0,0,.75);
-  padding: 20px;
-  overflow-y: auto;
-}
-
-.modal-content {
+.controls input,
+.controls select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
   background: var(--card);
   color: var(--text);
-  width: min(600px, 100%);
-  margin: 30px auto;
-  padding: 20px;
-  border-radius: 14px;
 }
 
-.modal-content img {
-  width: 100%;
-  max-height: 350px;
-  object-fit: contain;
-  margin: 10px 0;
-}
-
-.close {
-  float: right;
-  background: #e5e7eb;
-  color: #111;
-}
-
-.cart-line {
+.card {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
+  flex-direction: column;
+  transition: .2s;
 }
 
-.hidden {
-  display: none !important;
+.art {
+  height: 175px;
+  display: grid;
+  place-items: center;
+  font-size: 65px;
+  background: linear-gradient(135deg, #c9f4dd, #b4c5ff);
+  overflow: hidden;
 }
 
-@media (max-width: 480px) {
-  .logo { font-size: 25px; }
-  .product-image img { height: 165px; }
-  .hero { padding: 25px 12px; }
+.art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-body h3 {
+  margin: 0 0 8px;
+}
+
+.desc {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.price {
+  font-size: 21px;
+  color: #3470df;
+  font-weight: bold;
+  margin: 12px 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: auto;
+}
+
+.actions button {
+  flex: 1;
+  min-width: 90px;
+}
+
+.panel {
+  padding: 17px;
+  margin: 14px 0;
+}
+
+.upload-card {
+  padding: 12px;
+}
+
+.upload-card h3 {
+  font-size: 16px;
+}
+
+.preview {
+  height: 130px;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 10px;
+  overflow: hidden;
+  color: var(--muted);
+}
+
+.preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.upload-card input {
+  width: 100%;
+  font-size: 12px;
+}
+
+footer {
+  text-align: center;
+  background: #17112d;
+  color: white;
+  padding: 25px 12px;
+  margin-top: 25px;
+}
+
+.bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #17112d;
+  display: flex;
+  justify-content: space-around;
+  padding: 9px 3px;
+  z-index: 20;
+}
+
+.bottom a,
+.bottom button {
+  color: white;
+  background: transparent;
+  border: 0;
+  text-decoration: none;
+  text-align: center;
+  font-size: 12px;
+}
+
+.bottom span {
+  display: block;
+  font-size: 20px;
+}
+
+.whatsapp {
+  position: fixed;
+  right: 15px;
+  bottom: 78px;
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: white;
+  background: #20c96b;
+  font-size: 29px;
+  text-decoration: none;
+  z-index: 21;
+}
+
+.spacer {
+  height: 85px;
+}
+
+#toast {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #17112d;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 10px;
+  z-index: 50;
+}
+
+@media(max-width: 520px) {
+  .controls {
+    grid-template-columns: 1fr;
+  }
+
+  .logo {
+    font-size: 28px;
+  }
+
+  nav .btn {
+    padding: 9px;
+    font-size: 13px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>
+<header id="home">
   <div class="logo">🎨 ZOGGY KARTUN</div>
-  <div class="watermark">ZOGGY-ANIMASAN</div>
+  <div>ANIMATION ASSETS STORE</div>
   <p>তোমার পছন্দের Cartoon Store</p>
 </header>
 
 <nav>
-  <button onclick="showAll()">🏠 Home</button>
-  <button onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
-  <button onclick="showFavorites()">❤️ Favorites</button>
-  <button onclick="toggleDark()">🌙 Theme</button>
-  <button onclick="shareWebsite()">🔗 Share</button>
-  <a href="https://wa.me/918282892204" target="_blank" rel="noopener">
-    <button class="whatsapp">WhatsApp</button>
-  </a>
+  <a class="btn" href="#home">🏠 Home</a>
+  <button class="btn" onclick="openCart()">🛒 Cart <span id="cartCount">0</span></button>
+  <button class="btn" onclick="showFavorites()">❤️ Favorites</button>
+  <button class="btn" onclick="toggleTheme()">🌙 Theme</button>
+  <button class="btn" onclick="shareSite()">🔗 Share</button>
+  <a class="btn green" id="navWA" target="_blank" rel="noopener">WhatsApp</a>
 </nav>
 
 <main class="container">
 
-  <section class="hero">
-    <h1>Welcome to ZOGGY KARTUN!</h1>
-    <p>Cartoon Characters, Backgrounds, Props ও Packs এক জায়গায়।</p>
-    <button class="secondary" onclick="showAll()">🛍️ Shop Now</button>
-  </section>
+<section class="hero">
+  <h1>Welcome to ZOGGY KARTUN!</h1>
+  <p>Cartoon Characters, Backgrounds, Props, Stickers এবং Animation Assets এক জায়গায়!</p>
+  <a href="#shop" class="btn pink">🛍️ Shop Now</a>
+</section>
 
-  <div class="notice">
-    ⭐ নতুন কার্টুন প্রোডাক্ট দেখো, পছন্দের জিনিস Favorites-এ রাখো
-    এবং WhatsApp-এর মাধ্যমে অর্ডার পাঠাও।
-  </div>
+<section id="categories">
+  <h2>📂 সব ক্যাটাগরি</h2>
+  <div class="grid" id="categoryGrid"></div>
+</section>
 
-  <h2 class="section-title">📂 Categories</h2>
+<section id="shop">
+  <h2>🛍️ Cartoon Asset Shop</h2>
 
-  <section class="categories">
-    <button class="category-btn" onclick="filterCategory('Cartoon Characters')">🧑 Cartoon Characters</button>
-    <button class="category-btn" onclick="filterCategory('Cartoon Backgrounds')">🌄 Cartoon Backgrounds</button>
-    <button class="category-btn" onclick="filterCategory('Cartoon Props')">🎒 Cartoon Props</button>
-    <button class="category-btn" onclick="filterCategory('Cartoon Packs')">📦 Cartoon Packs</button>
-    <button class="category-btn" onclick="filterCategory('Cartoon Background Packs')">🏞️ Cartoon Background Packs</button>
-  </section>
+  <div class="controls">
+    <input id="search" placeholder="🔍 প্রোডাক্ট খুঁজুন..." oninput="renderProducts()">
 
-  <h2 class="section-title" id="productHeading">🛍️ All Products</h2>
-
-  <div class="search-row">
-    <input id="searchInput" type="search" placeholder="প্রোডাক্ট খুঁজুন..." oninput="renderProducts()">
-
-    <select id="sortSelect" onchange="renderProducts()">
-      <option value="default">Default sorting</option>
+    <select id="sort" onchange="renderProducts()">
+      <option value="default">Default Sorting</option>
       <option value="low">Price: Low to High</option>
       <option value="high">Price: High to Low</option>
-      <option value="newest">Newest first</option>
-      <option value="offer">Offers first</option>
+      <option value="name">Name A-Z</option>
     </select>
   </div>
 
-  <section class="products" id="products"></section>
+  <div class="grid" id="products"></div>
+</section>
 
-  <section id="favoritesSection" class="hidden">
-    <h2 class="section-title">❤️ My Favorites</h2>
-    <div id="favoritesList"></div>
-  </section>
+<section id="myUploads">
+  <h2>🖼️ নিজের ৫টি ছবি বেছে নাও</h2>
 
-  <section class="notice">
-    <h2>📺 Our YouTube Channel</h2>
-    <p>আমাদের YouTube চ্যানেলের লিঙ্ক পরে যোগ করা যাবে।</p>
-    <button class="primary" onclick="openYouTube()">▶️ Visit YouTube</button>
-  </section>
+  <div class="grid">
 
-  <section class="notice">
-    <h2>❓ FAQ</h2>
-    <details>
-      <summary>কীভাবে অর্ডার করব?</summary>
-      <p>প্রোডাক্টের WhatsApp Order বোতামে চাপ দিয়ে অর্ডারের মেসেজ পাঠাও।</p>
-    </details>
-    <details>
-      <summary>প্রোডাক্ট কি সঙ্গে সঙ্গে ডাউনলোড করা যাবে?</summary>
-      <p>এই প্রাথমিক সংস্করণে সরাসরি সুরক্ষিত ডাউনলোড নেই। সেটির জন্য আলাদা সার্ভার ব্যবস্থা লাগবে।</p>
-    </details>
-    <details>
-      <summary>পেমেন্ট ও অর্ডার কীভাবে যাচাই হবে?</summary>
-      <p>এই সংস্করণে অর্ডার WhatsApp-এ পাঠানো হয়। স্বয়ংক্রিয় পেমেন্ট যাচাইয়ের জন্য ব্যাকএন্ড লাগবে।</p>
-    </details>
-  </section>
+    <div class="upload-card">
+      <h3>ছবি ১ — Product Image</h3>
+      <div class="preview" id="preview1">ছবির প্রিভিউ</div>
+      <input type="file" accept="image/*" onchange="previewImage(event,1)">
+    </div>
+
+    <div class="upload-card">
+      <h3>ছবি ২ — Background</h3>
+      <div class="preview" id="preview2">ছবির প্রিভিউ</div>
+      <input type="file" accept="image/*" onchange="previewImage(event,2)">
+    </div>
+
+    <div class="upload-card">
+      <h3>ছবি ৩ — Cartoon Character</h3>
+      <div class="preview" id="preview3">ছবির প্রিভিউ</div>
+      <input type="file" accept="image/*" onchange="previewImage(event,3)">
+    </div>
+
+    <div class="upload-card">
+      <h3>ছবি ৪ — Animation Preview</h3>
+      <div class="preview" id="preview4">ছবির প্রিভিউ</div>
+      <input type="file" accept="image/*" onchange="previewImage(event,4)">
+    </div>
+
+    <div class="upload-card">
+      <h3>ছবি ৫ — Featured Image</h3>
+      <div class="preview" id="preview5">ছবির প্রিভিউ</div>
+      <input type="file" accept="image/*" onchange="previewImage(event,5)">
+    </div>
+
+  </div>
+
+  <p class="desc">
+    নোট: এখানে ছবি বেছে নিলে শুধু তোমার ব্রাউজারে প্রিভিউ দেখা যাবে।
+    সবার জন্য ওয়েবসাইটে ছবি দেখাতে ছবিগুলো GitHub রিপোজিটরিতে আপলোড করতে হবে।
+  </p>
+</section>
+
+<section id="favoritesSection">
+  <h2>❤️ তোমার Favorites</h2>
+  <div class="grid" id="favorites"></div>
+</section>
+
+<section id="faq">
+  <h2>❓ FAQ</h2>
+
+  <div class="panel">
+    <h3>কীভাবে অর্ডার করব?</h3>
+    <p>পছন্দের প্রোডাক্টে WhatsApp Order বোতাম চাপো।</p>
+  </div>
+
+  <div class="panel">
+    <h3>ছবি কীভাবে আপলোড করব?</h3>
+    <p>ছবি বেছে নিয়ে প্রিভিউ দেখতে পারবে। স্থায়ীভাবে অনলাইনে প্রকাশ করতে GitHub-এ ছবিটি আপলোড করতে হবে।</p>
+  </div>
+
+  <div class="panel">
+    <h3>পেমেন্ট কীভাবে হবে?</h3>
+    <p>পেমেন্টের আগে বিক্রেতার সঙ্গে WhatsApp-এ মূল্য ও পেমেন্টের পদ্ধতি নিশ্চিত করো। এই ডেমোতে অনলাইন পেমেন্ট সংযুক্ত নেই।</p>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>📞 Contact Us</h2>
+  <div class="panel">
+    <p>Website: ZOGGY KARTUN</p>
+    <a class="btn green" id="contactWA" target="_blank" rel="noopener">WhatsApp-এ যোগাযোগ</a>
+  </div>
+</section>
 
 </main>
 
 <footer>
-  <h2>ZOGGY KARTUN</h2>
+  <h2>🎨 ZOGGY KARTUN</h2>
+  <p>Cartoon Assets • Backgrounds • Characters • Animation</p>
   <p>© <span id="year"></span> ZOGGY KARTUN</p>
-  <p>Watermark: ZOGGY-ANIMASAN</p>
-  <p>Contact:
-    <a href="https://wa.me/918282892204" target="_blank" rel="noopener">WhatsApp</a>
-  </p>
-  <button class="secondary" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆️ Back to Top</button>
 </footer>
 
-<div class="modal" id="detailsModal" onclick="closeModalOnBackdrop(event, 'detailsModal')">
-  <div class="modal-content">
-    <button class="close" onclick="closeModal('detailsModal')">✖ Close</button>
-    <div id="detailsContent"></div>
-  </div>
+<div class="spacer"></div>
+
+<div class="bottom">
+  <a href="#home"><span>🏠</span>Home</a>
+  <a href="#shop"><span>🔍</span>Search</a>
+  <button onclick="openCart()"><span>🛒</span>Cart</button>
+  <a href="#favoritesSection"><span>❤️</span>Favorites</a>
+  <a href="#contact"><span>👤</span>Account</a>
 </div>
 
-<div class="modal" id="cartModal" onclick="closeModalOnBackdrop(event, 'cartModal')">
-  <div class="modal-content">
-    <button class="close" onclick="closeModal('cartModal')">✖ Close</button>
-    <h2>🛒 Your Cart</h2>
-    <div id="cartItems"></div>
-    <h3 id="cartTotal">Total: ₹0</h3>
-    <div class="product-actions">
-      <button class="whatsapp" onclick="checkoutWhatsApp()">Order on WhatsApp</button>
-      <button class="secondary" onclick="clearCart()">Clear Cart</button>
-    </div>
-  </div>
-</div>
+<a class="whatsapp" id="floatWA" target="_blank" rel="noopener" aria-label="WhatsApp">☏</a>
+
+<div id="toast"></div>
 
 <script>
+const WHATSAPP_NUMBER = "918282892204";
+
+const categories = [
+  "Cartoon Characters",
+  "Cartoon Backgrounds",
+  "Cartoon Props",
+  "Cartoon Packs",
+  "Cartoon Background Packs",
+  "Cartoon Clothes",
+  "Cartoon Images",
+  "Animation Assets",
+  "3D Cartoon Models",
+  "Cartoon Stickers",
+  "Cartoon Objects",
+  "Special Cartoon Effects",
+  "Animation Courses",
+  "Voice Over Services"
+];
+
+const products = [
+  {id:1,name:"Cute Cartoon Character",category:"Cartoon Characters",price:49,emoji:"🧑‍🎨",format:"PNG",size:"2 MB",description:"ভিডিও ও ডিজাইনের জন্য কার্টুন ক্যারেক্টার।"},
+  {id:2,name:"Green Cartoon Background",category:"Cartoon Backgrounds",price:39,emoji:"🌳",format:"JPG",size:"4 MB",description:"কার্টুন দৃশ্য তৈরি করার ব্যাকগ্রাউন্ড।"},
+  {id:3,name:"Cartoon House Props",category:"Cartoon Props",price:29,emoji:"🏠",format:"PNG",size:"1 MB",description:"কার্টুন দৃশ্যের জন্য বাড়ি ও বিভিন্ন প্রপস।"},
+  {id:4,name:"Starter Cartoon Pack",category:"Cartoon Packs",price:99,emoji:"🎁",format:"ZIP",size:"15 MB",description:"এক প্যাকে একাধিক ডেমো কার্টুন অ্যাসেট।"},
+  {id:5,name:"Nature Background Pack",category:"Cartoon Background Packs",price:79,emoji:"🏞️",format:"ZIP",size:"20 MB",description:"প্রকৃতির বিভিন্ন ব্যাকগ্রাউন্ডের প্যাক।"},
+  {id:6,name:"Cartoon Outfit Pack",category:"Cartoon Clothes",price:59,emoji:"👕",format:"PNG",size:"5 MB",description:"ক্যারেক্টার ডিজাইনের পোশাকের অ্যাসেট।"},
+  {id:7,name:"Cartoon Image Collection",category:"Cartoon Images",price:29,emoji:"🖼️",format:"JPG",size:"6 MB",description:"ডিজাইন ও প্রজেক্টের জন্য ছবির সংগ্রহ।"},
+  {id:8,name:"Animation Starter Assets",category:"Animation Assets",price:89,emoji:"🎬",format:"ZIP",size:"12 MB",description:"অ্যানিমেশন প্রজেক্টের জন্য ডেমো অ্যাসেট।"},
+  {id:9,name:"3D Cartoon Model",category:"3D Cartoon Models",price:149,emoji:"🧸",format:"3D",size:"10 MB",description:"3D ডিজাইনের জন্য মডেল অ্যাসেট।"},
+  {id:10,name:"Funny Cartoon Stickers",category:"Cartoon Stickers",price:19,emoji:"😎",format:"PNG",size:"2 MB",description:"চ্যাট ও ডিজাইনের জন্য স্টিকার।"},
+  {id:11,name:"Cartoon Objects Pack",category:"Cartoon Objects",price:39,emoji:"🪑",format:"PNG",size:"3 MB",description:"কার্টুন দৃশ্য সাজানোর অবজেক্ট।"},
+  {id:12,name:"Special Effects Pack",category:"Special Cartoon Effects",price:69,emoji:"✨",format:"ZIP",size:"8 MB",description:"ভিডিওর জন্য স্পেশাল ইফেক্ট অ্যাসেট।"},
+  {id:13,name:"Animation Course",category:"Animation Courses",price:199,emoji:"📚",format:"Course",size:"Online",description:"অ্যানিমেশন শেখার কোর্সের ডেমো তালিকা।"},
+  {id:14,name:"Voice Over Service",category:"Voice Over Services",price:99,emoji:"🎙️",format:"Audio",size:"By request",description:"ভয়েসওভার পরিষেবার জন্য যোগাযোগ করো।"}
+];
+
+let cart = JSON.parse(localStorage.getItem("zoggy_cart") || "[]");
+let favorites = JSON.parse(localStorage.getItem("zoggy_favorites") || "[]");
+let activeCategory = "";
+
+function saveData() {
+  localStorage.setItem("zoggy_cart", JSON.stringify(cart));
+  localStorage.setItem("zoggy_favorites", JSON.stringify(favorites));
+  updateCartCount();
+}
+
+function money(price) {
+  return "₹" + Number(price).toFixed(2);
+}
+
+function toast(message) {
+  const box = document.getElementById("toast");
+  box.textContent = message;
+  box.style.display = "block";
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => box.style.display = "none", 2500);
+}
+
+function waLink(message) {
+  return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+}
+
+function generalWhatsApp() {
+  return waLink("Hello ZOGGY KARTUN! I want to know about your cartoon assets.");
+}
+
+document.getElementById("navWA").href = generalWhatsApp();
+document.getElementById("contactWA").href = generalWhatsApp();
+document.getElementById("floatWA").href = generalWhatsApp();
+document.getElementById("year").textContent = new Date().getFullYear();
+
+function renderCategories() {
+  const grid = document.getElementById("categoryGrid");
+  grid.innerHTML = "";
+
+  categories.forEach(category => {
+    const item = document.createElement("button");
+    item.className = "category";
+    item.textContent = "🎨 " + category;
+
+    item.onclick = () => {
+      activeCategory = activeCategory === category ? "" : category;
+      renderCategories();
+      renderProducts();
+      document.getElementById("shop").scrollIntoView();
+    };
+
+    if (activeCategory === category) {
+      item.style.border = "2px solid #7038ed";
+    }
+
+    grid.appendChild(item);
+  });
+}
+
+function productCard(product) {
+  const isFavorite = favorites.includes(product.id);
+  const div = document.createElement("article");
+  div.className = "card";
+
+  div.innerHTML = `
+    <div class="art"><span>${product.emoji}</span></div>
+    <div class="card-body">
+      <h3></h3>
+      <div class="desc"></div>
+      <div class="meta"></div>
+      <div class="price"></div>
+      <div class="actions">
+        <button class="btn" data-action="cart">🛒 Add Cart</button>
+        <button class="btn pink" data-action="favorite">${isFavorite ? "❤️ Saved" : "♡ Favorite"}</button>
+        <button class="btn green" data-action="order">WhatsApp Order</button>
+      </div>
+    </div>
+  `;
+
+  div.querySelector("h3").textContent = product.name;
+  div.querySelector(".desc").textContent = product.description;
+  div.querySelector(".meta").textContent =
+    "ID: " + product.id + " • Format: " + product.format + " • Size: " + product.size;
+  div.querySelector(".price").textContent = money(product.price);
+
+  div.querySelector('[data-action="cart"]').onclick = () => addToCart(product.id);
+
+  div.querySelector('[data-action="favorite"]').onclick = () => {
+    toggleFavorite(product.id);
+  };
+
+  div.querySelector('[data-action="order"]').onclick = () => {
+    const message =
+      "Hello ZOGGY KARTUN! I want to order:\n" +
+      "Product: " + product.name + "\n" +
+      "Product ID: " + product.id + "\n" +
+      "Price: " + money(product.price) + "\n" +
+      "Format: " + product.format + "\n" +
+      "Please share the payment and delivery details.";
+
+    window.open(waLink(message), "_blank");
+  };
+
+  return div;
+}
+
+function renderProducts() {
+  const box = document.getElementById("products");
+  const query = document.getElementById("search").value.toLowerCase();
+  let list = products.filter(product => {
+    const matchesText =
+      (product.name + " " + product.category + " " + product.description)
+        .toLowerCase().includes(query);
+
+    const matchesCategory =
+      !activeCategory || product.category === activeCategory;
+
+    return matchesText && matchesCategory;
+  });
+
+  const sort = document.getElementById("sort").value;
+
+  if (sort === "low") list.sort((a,b) => a.price - b.price);
+  if (sort === "high") list.sort((a,b) => b.price - a.price);
+  if (sort === "name") list.sort((a,b) => a.name.localeCompare(b.name));
+
+  box.innerHTML = "";
+
+  if (!list.length) {
+    box.innerHTML = "<p>কোনো প্রোডাক্ট পাওয়া যায়নি।</p>";
+    return;
+  }
+
+  list.forEach(product => box.appendChild(productCard(product)));
+}
+
+function addToCart(id) {
+  cart.push(id);
+  saveData();
+  toast("প্রোডাক্ট কার্টে যোগ হয়েছে!");
+}
+
+function updateCartCount() {
+  document.getElementById("cartCount").textContent = cart.length;
+}
+
+function openCart() {
+  const selected = cart.map(id => products.find(product => product.id === id)).filter(Boolean);
+  const total = selected.reduce((sum, product) => sum + product.price, 0);
+
+  let message = "তোমার কার্ট:\n\n";
+
+  if (!selected.length) {
+    message += "কার্ট খালি।";
+  } else {
+    selected.forEach(product => {
+      message += product.name + " — " + money(product.price) + "\n";
+    });
+    message += "\nমোট: " + money(total);
+  }
+
+  const orderMessage =
+    "Hello ZOGGY KARTUN!\n" + message +
+    "\nPlease confirm availability, payment and delivery details.";
+
+  const cartWindow = window.open("", "_blank");
+
+  if (!cartWindow) {
+    toast(message);
+    return;
+  }
+
+  cartWindow.document.write(`
+    <!DOCTYPE html>
+    <html lang="bn">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>My Cart - ZOGGY KARTUN</title>
+      <style>
+        body{font-family:Arial;padding:20px;background:#f5f3ff;color:#242039}
+        .box{background:white;border-radius:14px;padding:18px;max-width:500px;margin:auto}
+        button,a{display:inline-block;padding:12px;border:0;border-radius:9px;background:#7038ed;color:white;text-decoration:none;margin:5px 0}
+      </style>
+    </head>
+    <body>
+      <div class="box">
+        <h2>🛒 ZOGGY KARTUN Cart</h2>
+        <pre style="white-space:pre-wrap"></pre>
+        <a id="order" target="_blank">Order on WhatsApp</a>
+        <button onclick="window.close()">Close</button>
+      </div>
+      <script>
+        document.querySelector("pre").textContent = ${JSON.stringify(message)};
+        document.getElementById("order").href =
+          "https://wa.me/${WHATSAPP_NUMBER}?text=" +
+          encodeURIComponent(${JSON.stringify(orderMessage)});
+      <\/script>
+    </body>
+    </html>
+  `);
+
+  cartWindow.document.close();
+}
+
+function toggleFavorite(id) {
+  if (favorites.includes(id)) {
+    favorites = favorites.filter(item => item !== id);
+    toast("Favorites থেকে সরানো হয়েছে।");
+  } else {
+    favorites.push(id);
+    toast("Favorites-এ যোগ হয়েছে!");
+  }
+
+  saveData();
+  renderProducts();
+  renderFavorites();
+}
+
+function renderFavorites() {
+  const box = document.getElementById("favorites");
+  box.innerHTML = "";
+
+  const list = products.filter(product => favorites.includes(product.id));
+
+  if (!list.length) {
+    box.innerHTML = "<p>এখনও কোনো Favorite যোগ করোনি।</p>";
+    return;
+  }
+
+  list.forEach(product => box.appendChild(productCard(product)));
+}
+
+function showFavorites() {
+  renderFavorites();
+  document.getElementById("favoritesSection").scrollIntoView();
+}
+
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  localStorage.setItem(
+    "zoggy_theme",
+    document.body.classList.contains("dark") ? "dark" : "light"
+  );
+}
+
+function shareSite() {
+  if (navigator.share) {
+    navigator.share({
+      title: "ZOGGY KARTUN",
+      text: "Visit ZOGGY KARTUN Cartoon Assets Store",
+      url: location.href
+    }).catch(() => {});
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(location.href)
+      .then(() => toast("Website link কপি হয়েছে!"))
+      .catch(() => toast("Browser-এর address bar থেকে link কপি করো।"));
+  } else {
+    toast("Browser-এর address bar থেকে website link কপি করো।");
+  }
+}
+
+function previewImage(event, number) {
+  const file = event.target.files && event.target.files[0];
+
+  if (!file) return;
+
+  if (!file.type.startsWith("image/")) {
+    toast("একটি image file বেছে নাও।");
+    event.target.value = "";
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+    const preview = document.getElementById("preview" + number);
+    preview.innerHTML = "";
+
+    const image = document.createElement("img");
+    image.src = e.target.result;
+    image.alt = "Selected image " + number;
+
+    preview.appendChild(image);
+  };
+
+  reader.readAsDataURL(file);
+}
+
+if (localStorage.getItem("zoggy_theme") === "dark") {
+  document.body.classList.add("dark");
+}
+
+renderCategories();
+renderProducts();
+renderFavorites();
+updateCartCount();
+</script>
+
+</body>
+</html>
