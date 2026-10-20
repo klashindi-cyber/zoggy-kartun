@@ -1999,7 +1999,54 @@ document.addEventListener("keydown", function(e) {
   }
 });
 </script>
+<!-- ZOGGY KARTUN COUPON -->
+<section id="coupon-section" style="background:#190d35;color:white;padding:20px;border-radius:16px;font-family:Arial,sans-serif;max-width:500px;margin:20px auto;">
+  <h2 style="color:#d8b4fe;">🎟️ ZOGGY KARTUN COUPON</h2>
+  <p>কুপন কোড লিখে ছাড় নাও!</p>
 
+  <input id="couponCode" placeholder="কুপন কোড লিখুন"
+    style="padding:12px;width:60%;border-radius:8px;border:0;text-transform:uppercase;">
+
+  <button onclick="applyCoupon()"
+    style="padding:12px;background:#8b5cf6;color:white;border:0;border-radius:8px;">
+    Apply
+  </button>
+
+  <p id="couponMessage" aria-live="polite"></p>
+  <h3 id="couponDiscount"></h3>
+</section>
+
+<script>
+const couponList = {
+  A49HTDG43: 5,
+  ZK10SAVE26: 10,
+  KARTUN15X: 15,
+  ZOGGY20OFF: 20,
+  ASSET10GO: 12,
+  ZK15DEAL26: 18,
+  PIXEL20ZK: 22,
+  CARTOON5X: 7,
+  ZK25BONUS: 25,
+  HAPPY10ZK: 8
+};
+
+function applyCoupon() {
+  const code = document.getElementById("couponCode").value.trim().toUpperCase();
+  const message = document.getElementById("couponMessage");
+  const discount = document.getElementById("couponDiscount");
+
+  if (Object.prototype.hasOwnProperty.call(couponList, code)) {
+    const percent = couponList[code];
+    message.textContent = "✅ কুপন কোড সঠিক!";
+    message.style.color = "#4ade80";
+    discount.textContent = "আপনি " + percent + "% ছাড় পাবেন।";
+  } else {
+    message.textContent = "❌ কুপন কোড সঠিক নয়।";
+    message.style.color = "#f87171";
+    discount.textContent = "";
+  }
+}
+</script>
 </body>
 </html>
 
