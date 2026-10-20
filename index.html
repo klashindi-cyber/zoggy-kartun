@@ -1,177 +1,222 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZOGGY KARTUN | Cartoon Digital Shop</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ZOGGY KARTUN — Digital Cartoon Shop</title>
 <style>
-:root{--bg:#101322;--panel:#1b2035;--text:#f6f7ff;--muted:#b8bfd8;--accent:#ffca55;--pink:#ff6b9a}
+:root{--bg:#101322;--panel:#1b2035;--text:#f7f7ff;--muted:#b9c0d8;--accent:#ffca55;--border:#353c58}
+body.light{--bg:#f4f5fb;--panel:#fff;--text:#20243a;--muted:#626982;--border:#d9ddec}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
-header{padding:22px 16px;text-align:center;background:linear-gradient(135deg,#31245f,#172b4d)}
-header h1{margin:0;color:var(--accent);font-size:clamp(27px,5vw,42px)}
-header p{color:#eee}
-nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:12px;background:#15192a;position:sticky;top:0;z-index:5}
-button,.btn{border:0;border-radius:9px;padding:10px 13px;background:var(--accent);color:#201a0a;font-weight:bold;cursor:pointer}
-button:hover,.btn:hover{opacity:.86}
-input,select,textarea{width:100%;padding:11px;margin:5px 0 12px;border:1px solid #414967;border-radius:8px;background:#111629;color:white}
+body{margin:0;background:var(--bg);color:var(--text);font:16px Arial,sans-serif;transition:.2s}
+header{background:linear-gradient(130deg,#30215d,#173b59);padding:25px 15px;text-align:center}
+header h1{font-size:clamp(28px,5vw,43px);color:var(--accent);margin:0}
+header p{color:white}
+nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);padding:12px;position:sticky;top:0;z-index:5;border-bottom:1px solid var(--border)}
+button,.btn{padding:10px 13px;border:0;border-radius:8px;background:var(--accent);color:#211a08;font-weight:bold;cursor:pointer}
+button:hover{filter:brightness(.94)}
+button:disabled{opacity:.5;cursor:not-allowed}
+input,select,textarea{width:100%;padding:11px;margin:5px 0 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text)}
 label{font-size:14px;color:var(--muted)}
-.container{max-width:1200px;margin:auto;padding:16px}
+.container{max-width:1250px;margin:auto;padding:16px}
 h2{color:var(--accent)}
-.filters{display:grid;grid-template-columns:2fr 1fr;gap:10px}
-.layout{display:grid;grid-template-columns:minmax(0,2fr) minmax(270px,1fr);gap:18px;align-items:start}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
-.card,.panel{background:var(--panel);border:1px solid #303752;border-radius:13px;padding:13px;min-width:0}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;align-items:start}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:14px}
+.card,.panel{background:var(--panel);border:1px solid var(--border);border-radius:13px;padding:13px;min-width:0}
 .card h3{margin:10px 0}
-.photos{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
-.photos img{width:100%;height:100px;object-fit:cover;border-radius:7px;background:#303752}
+.photos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+.photos img{width:100%;height:90px;object-fit:cover;border-radius:7px;background:var(--border)}
+.placeholder{height:90px;background:var(--border);border-radius:7px;display:grid;place-items:center;font-size:25px}
 .price{font-size:20px;font-weight:bold;color:var(--accent)}
-.muted{color:var(--muted);font-size:13px}
+.muted{font-size:13px;color:var(--muted)}
 .row{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
-.row>*{flex:1}
+.row>*{flex:1;min-width:0}
 .row button{flex:initial}
-.cart-item{padding:10px 0;border-bottom:1px solid #343a52}
-.total{font-size:18px;line-height:1.8}
 .hidden{display:none!important}
-.tag{display:inline-block;background:#34304e;color:#ffd87b;padding:4px 7px;border-radius:6px;font-size:12px}
-footer{text-align:center;padding:25px;color:var(--muted)}
+.tag{display:inline-block;padding:5px 7px;border-radius:6px;background:#393052;color:#ffe29a;font-size:12px}
+.cart-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.total{line-height:1.9}
+.notice{padding:10px;border-radius:8px;background:var(--panel);border:1px solid var(--border);margin:10px 0}
+footer{text-align:center;color:var(--muted);padding:25px}
 a{color:var(--accent)}
-hr{border-color:#353a52}
-@media(max-width:750px){.layout{grid-template-columns:1fr}.filters{grid-template-columns:1fr}nav{position:static}}
+summary{cursor:pointer;padding:8px}
+hr{border:0;border-top:1px solid var(--border);margin:18px 0}
+.small{font-size:12px}
+@media(max-width:800px){.layout{grid-template-columns:1fr}nav{position:static}}
 </style>
 </head>
 <body>
 <header>
-  <h1>🎨 ZOGGY KARTUN</h1>
-  <p id="tagline">তোমার কার্টুন তৈরির সব ডিজিটাল সামগ্রী এক জায়গায়!</p>
-  <div class="row" style="max-width:230px;margin:auto">
-    <button onclick="setLang('bn')">বাংলা</button>
-    <button onclick="setLang('hi')">हिन्दी</button>
-  </div>
+<h1>🎨 ZOGGY KARTUN</h1>
+<p id="subtitle">তোমার কার্টুন তৈরির সব ডিজিটাল সামগ্রী এক জায়গায়!</p>
+<div class="row" style="max-width:230px;margin:auto">
+<button onclick="setLanguage('bn')">বাংলা</button>
+<button onclick="setLanguage('hi')">हिन्दी</button>
+</div>
 </header>
 
 <nav>
-  <button onclick="go('shop')">🛍️ Shop</button>
-  <button onclick="go('cart')">🛒 Cart (<span id="cartCount">0</span>)</button>
-  <button onclick="go('wishlist')">❤️ Wishlist</button>
-  <button onclick="go('custom')">✍️ Custom Work</button>
-  <button onclick="go('admin')">⚙️ Admin</button>
+<button onclick="showPage('shop')">🛍️ Shop</button>
+<button onclick="showPage('wishlist')">❤️ Wishlist</button>
+<button onclick="showPage('cart')">🛒 Cart (<span id="cartCount">0</span>)</button>
+<button onclick="showPage('custom')">✍️ Custom Order</button>
+<button onclick="showPage('admin')">⚙️ Admin</button>
+<button onclick="toggleTheme()">🌗 Theme</button>
 </nav>
 
 <main class="container">
-<section id="shop">
-  <h2 id="shopTitle">আমাদের ডিজিটাল প্রোডাক্ট</h2>
-  <div class="filters">
-    <input id="search" placeholder="প্রোডাক্ট খুঁজুন..." oninput="renderProducts()">
-    <select id="category" onchange="renderProducts()">
-      <option value="">সব ক্যাটাগরি</option>
-      <option>Cartoon Backgrounds</option>
-      <option>Cartoon Characters</option>
-      <option>Background Music</option>
-      <option>Thumbnails</option>
-      <option>Story Writing</option>
-      <option>Props & Objects</option>
-      <option>Animation Packages</option>
-    </select>
-  </div>
-  <div class="layout">
-    <div id="products" class="products"></div>
-    <aside class="panel">
-      <h2>🛒 Cart</h2>
-      <div id="cartItems"></div>
-      <div class="total">
-        Subtotal: ₹<span id="subtotal">0</span><br>
-        Discount: −₹<span id="discount">0</span><br>
-        <strong>Total: ₹<span id="total">0</span></strong>
-      </div>
-      <label>Coupon Code</label>
-      <div class="row">
-        <input id="coupon" placeholder="যেমন ZOGGY5">
-        <button onclick="applyCoupon()">Apply</button>
-      </div>
-      <p id="couponMsg" class="muted"></p>
-      <button style="width:100%" onclick="orderWhatsApp()">📲 WhatsApp-এ অর্ডার</button>
-      <p class="muted">WhatsApp-এ মেসেজ তৈরি হবে। অর্ডার পাঠাতে Send চাপতে হবে।</p>
-    </aside>
-  </div>
+<section id="shopPage">
+<h2 id="shopHeading">আমাদের ডিজিটাল প্রোডাক্ট</h2>
+<div class="row">
+<input id="search" placeholder="প্রোডাক্ট খুঁজুন..." oninput="renderProducts()">
+<select id="category" onchange="renderProducts()">
+<option value="">সব ক্যাটাগরি</option>
+<option>Cartoon Backgrounds</option>
+<option>Cartoon Characters</option>
+<option>Background Music</option>
+<option>Thumbnails</option>
+<option>Story Writing</option>
+<option>Props & Objects</option>
+<option>Animation Packages</option>
+</select>
+<select id="sort" onchange="renderProducts()">
+<option value="default">Default order</option>
+<option value="low">দাম: কম থেকে বেশি</option>
+<option value="high">দাম: বেশি থেকে কম</option>
+<option value="name">নাম অনুযায়ী</option>
+</select>
+</div>
+
+<div class="layout">
+<div>
+<div id="productGrid" class="products"></div>
+</div>
+<aside class="panel">
+<h2>🛒 তোমার কার্ট</h2>
+<div id="cartItems"></div>
+<div class="total">
+Subtotal: ₹<span id="subtotal">0</span><br>
+Discount: −₹<span id="discount">0</span><br>
+<strong>Final Total: ₹<span id="grandTotal">0</span></strong>
+</div>
+<label>Coupon Code</label>
+<div class="row">
+<input id="couponInput" placeholder="ZOGGY5">
+<button onclick="applyCoupon()">Apply</button>
+</div>
+<p id="couponMessage" class="muted"></p>
+<button style="width:100%" onclick="checkout()">📲 WhatsApp Order</button>
+<button style="width:100%;margin-top:8px" onclick="clearCart()">Clear Cart</button>
+<p class="muted">অর্ডারের মেসেজ WhatsApp-এ খুলবে। পাঠাতে Send চাপতে হবে।</p>
+</aside>
+</div>
 </section>
 
-<section id="wishlist" class="hidden">
-  <h2>❤️ Wishlist</h2><div id="wishItems" class="products"></div>
+<section id="wishlistPage" class="hidden">
+<h2>❤️ My Wishlist</h2>
+<div id="wishlistGrid" class="products"></div>
 </section>
 
-<section id="custom" class="hidden">
-  <div class="panel">
-    <h2>✍️ Custom Cartoon Work</h2>
-    <label>তোমার নাম / आपका नाम</label><input id="customerName" placeholder="নাম">
-    <label>কী কাজ করাতে চাও?</label>
-    <select id="customType">
-      <option>Cartoon Character</option><option>Cartoon Background</option>
-      <option>Thumbnail</option><option>Story Writing</option>
-      <option>Animation Package</option><option>Other</option>
-    </select>
-    <label>কাজের বিস্তারিত</label><textarea id="customDetails" rows="5" placeholder="কেমন ডিজাইন চাই, কতগুলো চাই ইত্যাদি"></textarea>
-    <label>তোমার বাজেট (₹)</label><input id="customBudget" type="number" min="0" placeholder="বাজেট">
-    <button onclick="sendCustom()">WhatsApp-এ কাজের অনুরোধ পাঠাও</button>
-  </div>
+<section id="cartPage" class="hidden">
+<h2>🛒 Shopping Cart</h2>
+<p>কার্টের জিনিস এই পেজেও দেখতে পারবি। ডান পাশের Cart অংশে পরিমাণ বদলাতে পারবি।</p>
+<div id="cartPageItems" class="products"></div>
+<button onclick="showPage('shop')">Continue Shopping</button>
 </section>
 
-<section id="admin" class="hidden">
-  <div class="panel">
-    <h2>⚙️ Admin Product Manager</h2>
-    <p class="muted">এটি ব্রাউজারে চলা ডেমো অ্যাডমিন প্যানেল। বাস্তব সাইটে নিরাপদ লগইন ও সার্ভার দরকার।</p>
-    <input id="editId" type="hidden">
-    <label>Product Name</label><input id="pname" placeholder="প্রোডাক্টের নাম">
-    <label>Category</label>
-    <select id="pcat">
-      <option>Cartoon Backgrounds</option><option>Cartoon Characters</option>
-      <option>Background Music</option><option>Thumbnails</option>
-      <option>Story Writing</option><option>Props & Objects</option>
-      <option>Animation Packages</option>
-    </select>
-    <label>Price (₹)</label><input id="pprice" type="number" min="0" placeholder="প্রোডাক্টের দাম">
-    <label>Description</label><textarea id="pdesc" placeholder="প্রোডাক্টের বিবরণ"></textarea>
-    <label>License information</label><input id="plicense" placeholder="যেমন: Personal use">
-    <label>Product image 1</label><input id="img1" type="file" accept="image/*">
-    <label>Product image 2</label><input id="img2" type="file" accept="image/*">
-    <label>Product image 3</label><input id="img3" type="file" accept="image/*">
-    <label>Digital file URL (optional)</label><input id="pfile" placeholder="নিজের ফাইলের লিংক">
-    <div class="row">
-      <button onclick="saveProduct()">💾 Save Product</button>
-      <button onclick="clearForm()">Clear Form</button>
-    </div>
-    <hr>
-    <h3>Products to manage</h3><div id="adminProducts"></div>
-    <hr>
-    <h3>Coupon Codes</h3>
-    <p class="muted">ডিফল্ট কুপন: ZOGGY5 (5%), KARTUN8 (8%), YOUTUBE10 (10%), CHARACTER12 (12%), ZOGGY15 (15%)</p>
-    <label>New coupon code</label><input id="newCoupon" placeholder="MYCOUPON">
-    <label>Discount percentage (1–15)</label><input id="newPercent" type="number" min="1" max="15" placeholder="10">
-    <button onclick="addCoupon()">Add Coupon</button>
-    <div id="couponAdmin"></div>
-    <hr>
-    <button onclick="exportBackup()">⬇️ Download JSON Backup</button>
-    <p class="muted">এই ব্যাকআপে ব্রাউজারে থাকা প্রোডাক্ট ও কুপনের তথ্য থাকবে।</p>
-  </div>
+<section id="customPage" class="hidden">
+<div class="panel">
+<h2>✍️ Custom Cartoon Order</h2>
+<label>তোমার নাম</label><input id="customerName" placeholder="নাম">
+<label>কাজের ধরন</label>
+<select id="customType">
+<option>Cartoon Character</option>
+<option>Cartoon Background</option>
+<option>Thumbnail</option>
+<option>Background Music</option>
+<option>Story Writing</option>
+<option>Props & Objects</option>
+<option>Animation Package</option>
+<option>Other</option>
+</select>
+<label>কাজের বিবরণ</label><textarea id="customDetails" rows="5" placeholder="কী ধরনের কাজ চাই তা লেখ"></textarea>
+<label>বাজেট (₹)</label><input id="customBudget" type="number" min="0" placeholder="তোমার বাজেট">
+<button onclick="sendCustomOrder()">WhatsApp-এ অনুরোধ পাঠাও</button>
+</div>
 </section>
 
-<section id="faq" class="panel">
-  <h2>❓ FAQ & Policies</h2>
-  <details><summary>পেমেন্ট কীভাবে করব?</summary><p>WhatsApp-এ অর্ডার পাঠিয়ে পেমেন্টের পদ্ধতি ও দাম নিশ্চিত করো। এই ডেমোতে অনলাইন পেমেন্ট যুক্ত নেই।</p></details>
-  <details><summary>ডিজিটাল ফাইল কীভাবে পাব?</summary><p>অর্ডার ও পেমেন্ট যাচাই করার পরে বিক্রেতা ফাইল বা ডাউনলোড লিংক পাঠাতে পারবেন।</p></details>
-  <details><summary>Refund Policy</summary><p>কেনার আগে ফাইল, লাইসেন্স ও দাম যাচাই করো। রিফান্ডের শর্ত WhatsApp-এ অর্ডারের আগে নিশ্চিত করো।</p></details>
-  <details><summary>Customer Reviews</summary><p>রিভিউ দেখানোর ব্যবস্থা করতে বাস্তব ডেটাবেস ও সার্ভার প্রয়োজন।</p></details>
+<section id="adminPage" class="hidden">
+<div class="panel">
+<h2>⚙️ Admin Product Manager</h2>
+<p class="muted">প্রোডাক্ট যোগ, এডিট, ডিলিট ও তিনটি ছবি আপলোড করতে পারবি। এই ডেমোতে অ্যাডমিন প্যানেল পাসওয়ার্ড দিয়ে সুরক্ষিত নয়।</p>
+
+<label>Product ID (এডিট করার সময়)</label><input id="editId" readonly placeholder="নতুন প্রোডাক্ট হলে খালি রাখ">
+<label>Product Name</label><input id="pName" placeholder="প্রোডাক্টের নাম">
+<label>Category</label>
+<select id="pCategory">
+<option>Cartoon Backgrounds</option>
+<option>Cartoon Characters</option>
+<option>Background Music</option>
+<option>Thumbnails</option>
+<option>Story Writing</option>
+<option>Props & Objects</option>
+<option>Animation Packages</option>
+</select>
+<label>Price (₹)</label><input id="pPrice" type="number" min="0" placeholder="দাম">
+<label>Original Price (ঐচ্ছিক)</label><input id="pOriginalPrice" type="number" min="0" placeholder="আগের দাম">
+<label>Description</label><textarea id="pDescription" rows="3" placeholder="প্রোডাক্টের বিবরণ"></textarea>
+<label>License Information</label><input id="pLicense" placeholder="যেমন: Personal use">
+<label>Digital File URL (ঐচ্ছিক)</label><input id="pFile" type="url" placeholder="ফাইলের লিংক">
+<label>Image 1</label><input id="image1" type="file" accept="image/*">
+<label>Image 2</label><input id="image2" type="file" accept="image/*">
+<label>Image 3</label><input id="image3" type="file" accept="image/*">
+<div class="row">
+<button onclick="saveProduct()">💾 Save Product</button>
+<button onclick="resetProductForm()">Clear Form</button>
+</div>
+
+<hr>
+<h2>Manage Products</h2>
+<div id="adminProductList"></div>
+
+<hr>
+<h2>🏷️ Manage Coupons</h2>
+<p class="muted">ডিফল্ট কুপন: ZOGGY5 (5%), KARTUN8 (8%), YOUTUBE10 (10%), CHARACTER12 (12%), ZOGGY15 (15%)</p>
+<label>Coupon Code</label><input id="newCouponCode" placeholder="MYCOUPON">
+<label>Discount Percentage (1–15)</label><input id="newCouponPercent" type="number" min="1" max="15">
+<button onclick="addCoupon()">Add Coupon</button>
+<div id="adminCouponList"></div>
+
+<hr>
+<h2>💾 Backup & Restore</h2>
+<button onclick="downloadBackup()">Download JSON Backup</button>
+<label>Restore JSON Backup</label><input id="backupFile" type="file" accept=".json,application/json">
+<button onclick="restoreBackup()">Restore Backup</button>
+<p class="muted">ব্যাকআপ ফাইলে প্রোডাক্ট, কুপন ও ছবি থাকতে পারে। নিজের ব্যাকআপ ফাইলই ব্যবহার করবি।</p>
+</div>
+</section>
+
+<section class="panel" style="margin-top:20px">
+<h2>❓ Help & Policies</h2>
+<details><summary>কীভাবে ডিজিটাল প্রোডাক্ট কিনব?</summary><p>কার্টে যোগ কর, কুপন থাকলে প্রয়োগ কর এবং WhatsApp-এ অর্ডারের বিবরণ পাঠা। পেমেন্টের পদ্ধতি বিক্রেতার সঙ্গে নিশ্চিত কর।</p></details>
+<details><summary>কীভাবে ডাউনলোড পাব?</summary><p>অর্ডার যাচাইয়ের পরে বিক্রেতা ফাইল বা ডাউনলোড লিংক পাঠাতে পারবেন। এই HTML নিজে পেমেন্ট যাচাই করে না।</p></details>
+<details><summary>Refund Policy</summary><p>কেনার আগে লাইসেন্স ও ফাইলের বিবরণ নিশ্চিত কর। রিফান্ডের শর্ত বিক্রেতার সঙ্গে অর্ডারের আগে ঠিক কর।</p></details>
+<details><summary>কাস্টম কাজের অর্ডার</summary><p>Custom Order পেজে কাজের বিবরণ লিখে WhatsApp-এ পাঠাতে পারবি।</p></details>
 </section>
 </main>
 
 <footer>
-  <p>© <span id="year"></span> ZOGGY KARTUN</p>
-  <p>Support / সাহায্য: <a href="https://wa.me/918282892204" target="_blank" rel="noopener">WhatsApp Contact</a></p>
+<p>© <span id="year"></span> ZOGGY KARTUN</p>
+<p>Support: <a href="https://wa.me/918282892204" target="_blank" rel="noopener">WhatsApp Contact</a></p>
+<p class="small">Digital products • Cartoon characters • Backgrounds • Animation assets</p>
 </footer>
 
 <script>
+"use strict";
+
 const WA_NUMBER = "918282892204";
-const defaultCoupons = {
+const DEFAULT_COUPONS = {
   ZOGGY5:5,
   KARTUN8:8,
   YOUTUBE10:10,
@@ -179,283 +224,466 @@ const defaultCoupons = {
   ZOGGY15:15
 };
 
-const sampleProducts = [
- {id:1,name:"Cartoon Background Pack",category:"Cartoon Backgrounds",price:99,desc:"কার্টুন ভিডিওর জন্য ব্যাকগ্রাউন্ড প্যাক।",license:"Personal use",images:[],file:""},
- {id:2,name:"Cartoon Character Pack",category:"Cartoon Characters",price:149,desc:"কার্টুন চরিত্রের ডিজিটাল প্যাক।",license:"Personal use",images:[],file:""},
- {id:3,name:"Cartoon Music Pack",category:"Background Music",price:79,desc:"কার্টুন ভিডিওর জন্য মিউজিক প্যাক।",license:"Check license before use",images:[],file:""},
- {id:4,name:"Cartoon Thumbnail Pack",category:"Thumbnails",price:59,desc:"কার্টুন ভিডিওর থাম্বনেইল ডিজাইন।",license:"Personal use",images:[],file:""},
- {id:5,name:"Cartoon Story Writing",category:"Story Writing",price:199,desc:"তোমার আইডিয়া অনুযায়ী কার্টুন গল্প লেখার পরিষেবা।",license:"Custom service",images:[],file:""},
- {id:6,name:"Cartoon Props & Objects",category:"Props & Objects",price:89,desc:"কার্টুন দৃশ্যের জন্য নানা ধরনের অবজেক্ট।",license:"Personal use",images:[],file:""},
- {id:7,name:"Ready-made Animation Pack",category:"Animation Packages",price:299,desc:"রেডি-মেড অ্যানিমেশন সামগ্রীর প্যাক।",license:"Check license before use",images:[],file:""}
+const SAMPLE_PRODUCTS = [
+ {id:1,name:"Cartoon Background Pack",category:"Cartoon Backgrounds",price:99,originalPrice:129,description:"কার্টুন ভিডিওর জন্য ডিজিটাল ব্যাকগ্রাউন্ড প্যাক।",license:"Personal use",images:[],file:""},
+ {id:2,name:"Cartoon Character Pack",category:"Cartoon Characters",price:149,originalPrice:199,description:"কার্টুন চরিত্রের ডিজিটাল প্যাক।",license:"Check license before use",images:[],file:""},
+ {id:3,name:"Background Music Pack",category:"Background Music",price:79,originalPrice:99,description:"কার্টুন ভিডিওর জন্য ব্যাকগ্রাউন্ড মিউজিক প্যাক।",license:"Check license before use",images:[],file:""},
+ {id:4,name:"Thumbnail Design Pack",category:"Thumbnails",price:59,originalPrice:79,description:"কার্টুন ভিডিওর থাম্বনেইল ডিজাইন প্যাক।",license:"Personal use",images:[],file:""},
+ {id:5,name:"Cartoon Story Writing",category:"Story Writing",price:199,originalPrice:0,description:"তোমার আইডিয়া অনুযায়ী গল্প লেখার পরিষেবা।",license:"Custom service",images:[],file:""},
+ {id:6,name:"Cartoon Props Pack",category:"Props & Objects",price:89,originalPrice:119,description:"কার্টুন দৃশ্যের জন্য প্রপস ও অবজেক্ট।",license:"Personal use",images:[],file:""},
+ {id:7,name:"Ready-made Animation Pack",category:"Animation Packages",price:299,originalPrice:399,description:"রেডি-মেড অ্যানিমেশন অ্যাসেট প্যাক।",license:"Check license before use",images:[],file:""}
 ];
 
-let products = load("zk_products", sampleProducts);
-let cart = load("zk_cart", []);
-let wishlist = load("zk_wishlist", []);
-let coupons = load("zk_coupons", defaultCoupons);
-let activeCoupon = "";
-let lang = "bn";
-
-function load(key, fallback) {
-  try {
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : JSON.parse(JSON.stringify(fallback));
-  } catch(e) { return JSON.parse(JSON.stringify(fallback)); }
+function readStorage(key,fallback){
+  try{
+    const value=localStorage.getItem(key);
+    return value===null?JSON.parse(JSON.stringify(fallback)):JSON.parse(value);
+  }catch(e){return JSON.parse(JSON.stringify(fallback));}
 }
-function persist() {
-  try {
-    localStorage.setItem("zk_products", JSON.stringify(products));
-    localStorage.setItem("zk_cart", JSON.stringify(cart));
-    localStorage.setItem("zk_wishlist", JSON.stringify(wishlist));
-    localStorage.setItem("zk_coupons", JSON.stringify(coupons));
-  } catch(e) {
-    alert("ব্রাউজারের স্টোরেজ পূর্ণ হতে পারে। বড় ছবি কমিয়ে আবার চেষ্টা করো।");
+
+let products=readStorage("zk_products_v3",SAMPLE_PRODUCTS);
+let cart=readStorage("zk_cart_v3",[]);
+let wishlist=readStorage("zk_wishlist_v3",[]);
+let coupons=readStorage("zk_coupons_v3",DEFAULT_COUPONS);
+let activeCoupon="";
+let language="bn";
+
+function saveStorage(){
+  try{
+    localStorage.setItem("zk_products_v3",JSON.stringify(products));
+    localStorage.setItem("zk_cart_v3",JSON.stringify(cart));
+    localStorage.setItem("zk_wishlist_v3",JSON.stringify(wishlist));
+    localStorage.setItem("zk_coupons_v3",JSON.stringify(coupons));
+    return true;
+  }catch(e){
+    alert("স্টোরেজ পূর্ণ হয়েছে। ছোট ছবি ব্যবহার কর অথবা পুরোনো অপ্রয়োজনীয় প্রোডাক্ট মুছে দে।");
+    return false;
   }
 }
-function esc(s) {
-  return String(s ?? "").replace(/[&<>"']/g, c => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[c]));
+
+function escapeHTML(value){
+  return String(value??"").replace(/[&<>"']/g,function(ch){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch];
+  });
 }
-function money(n) { return Number(n || 0).toLocaleString("en-IN"); }
-function go(id) {
-  ["shop","wishlist","custom","admin"].forEach(x =>
-    document.getElementById(x).classList.toggle("hidden", x !== id)
-  );
-  if(id==="wishlist") renderWishlist();
-  if(id==="admin") renderAdmin();
+
+function money(value){
+  return Number(value||0).toLocaleString("en-IN",{maximumFractionDigits:2});
+}
+
+function showPage(name){
+  const ids=["shop","wishlist","cart","custom","admin"];
+  ids.forEach(id=>{
+    document.getElementById(id+"Page").classList.toggle("hidden",id!==name);
+  });
+  if(name==="wishlist")renderWishlist();
+  if(name==="cart")renderCartPage();
+  if(name==="admin")renderAdmin();
   window.scrollTo({top:0,behavior:"smooth"});
 }
-function setLang(l) {
-  lang = l;
-  document.documentElement.lang = l === "bn" ? "bn" : "hi";
-  document.getElementById("tagline").textContent = l==="bn"
-    ? "তোমার কার্টুন তৈরির সব ডিজিটাল সামগ্রী এক জায়গায়!"
-    : "आपके कार्टून बनाने के लिए सभी डिजिटल सामग्री एक जगह!";
-  document.getElementById("shopTitle").textContent = l==="bn"
-    ? "আমাদের ডিজিটাল প্রোডাক্ট" : "हमारे डिजिटल प्रोडक्ट";
-  document.getElementById("search").placeholder = l==="bn"
-    ? "প্রোডাক্ট খুঁজুন..." : "प्रोडक्ट खोजें...";
+
+function setLanguage(lang){
+  language=lang;
+  document.documentElement.lang=lang;
+  document.getElementById("subtitle").textContent=lang==="bn"
+    ?"তোমার কার্টুন তৈরির সব ডিজিটাল সামগ্রী এক জায়গায়!"
+    :"आपके कार्टून बनाने की सभी डिजिटल सामग्री एक जगह!";
+  document.getElementById("shopHeading").textContent=lang==="bn"
+    ?"আমাদের ডিজিটাল প্রোডাক্ট":"हमारे डिजिटल प्रोडक्ट";
+  document.getElementById("search").placeholder=lang==="bn"
+    ?"প্রোডাক্ট খুঁজুন...":"प्रोडक्ट खोजें...";
 }
-function renderProducts() {
-  const q = document.getElementById("search").value.toLowerCase();
-  const cat = document.getElementById("category").value;
-  const list = products.filter(p =>
-    (p.name+" "+p.desc+" "+p.category).toLowerCase().includes(q) &&
-    (!cat || p.category===cat)
-  );
-  document.getElementById("products").innerHTML = list.map(p => `
+
+function toggleTheme(){
+  document.body.classList.toggle("light");
+  try{localStorage.setItem("zk_theme",document.body.classList.contains("light")?"light":"dark");}catch(e){}
+}
+
+function productImages(p){
+  return [0,1,2].map(i=>{
+    const src=p.images&&p.images[i];
+    return src
+      ?`<img src="${src}" alt="${escapeHTML(p.name)} image ${i+1}">`
+      :`<div class="placeholder">🎨</div>`;
+  }).join("");
+}
+
+function renderProducts(){
+  const query=document.getElementById("search").value.trim().toLowerCase();
+  const category=document.getElementById("category").value;
+  const sort=document.getElementById("sort").value;
+
+  let list=products.filter(p=>{
+    const haystack=(p.name+" "+p.description+" "+p.category).toLowerCase();
+    return haystack.includes(query)&&(!category||p.category===category);
+  });
+
+  if(sort==="low")list.sort((a,b)=>a.price-b.price);
+  if(sort==="high")list.sort((a,b)=>b.price-a.price);
+  if(sort==="name")list.sort((a,b)=>a.name.localeCompare(b.name));
+
+  document.getElementById("productGrid").innerHTML=list.map(p=>`
     <article class="card">
-      <div class="photos">
-        ${[0,1,2].map(i => p.images && p.images[i]
-          ? `<img src="${p.images[i]}" alt="${esc(p.name)} image ${i+1}">`
-          : `<div class="photos-placeholder" style="height:100px;background:#303752;border-radius:7px;display:grid;place-items:center;font-size:26px">🎨</div>`
-        ).join("")}
-      </div>
-      <p><span class="tag">${esc(p.category)}</span></p>
-      <h3>${esc(p.name)}</h3>
-      <p class="muted">${esc(p.desc)}</p>
-      <p class="price">₹${money(p.price)}</p>
-      <p class="muted">License: ${esc(p.license || "Check before use")}</p>
+      <div class="photos">${productImages(p)}</div>
+      <p><span class="tag">${escapeHTML(p.category)}</span></p>
+      <h3>${escapeHTML(p.name)}</h3>
+      <p class="muted">${escapeHTML(p.description)}</p>
+      <p class="price">₹${money(p.price)}
+        ${p.originalPrice>p.price?`<del class="muted">₹${money(p.originalPrice)}</del>`:""}
+      </p>
+      <p class="muted">License: ${escapeHTML(p.license||"Confirm before use")}</p>
       <div class="row">
-        <button onclick="addCart(${p.id})">🛒 Add</button>
-        <button onclick="toggleWish(${p.id})">❤️</button>
+        <button onclick="addToCart(${Number(p.id)})">🛒 Add to Cart</button>
+        <button onclick="toggleWishlist(${Number(p.id)})">❤️</button>
       </div>
-      ${p.file ? `<p><a href="${esc(p.file)}" target="_blank" rel="noopener">Preview / File link</a></p>` : ""}
-    </article>`).join("") || "<p>কোনো প্রোডাক্ট পাওয়া যায়নি।</p>";
+      ${p.file?`<p><a href="${escapeHTML(p.file)}" target="_blank" rel="noopener">Preview / File Link</a></p>`:""}
+    </article>
+  `).join("")||"<p>কোনো প্রোডাক্ট পাওয়া যায়নি।</p>";
 }
-function addCart(id) {
-  const item = cart.find(x=>x.id===id);
-  if(item) item.qty++;
-  else cart.push({id,qty:1});
-  persist(); renderCart();
+
+function addToCart(id){
+  const product=products.find(p=>Number(p.id)===Number(id));
+  if(!product){alert("প্রোডাক্ট পাওয়া যায়নি!");return;}
+
+  const existing=cart.find(item=>Number(item.id)===Number(id));
+  if(existing)existing.qty=Number(existing.qty||0)+1;
+  else cart.push({id:Number(id),qty:1});
+
+  saveStorage();
+  renderCart();
+  renderCartPage();
+  alert("✅ "+product.name+" কার্টে যোগ হয়েছে!");
 }
-function changeQty(id, delta) {
-  const item = cart.find(x=>x.id===id);
-  if(!item) return;
-  item.qty += delta;
-  if(item.qty<=0) cart = cart.filter(x=>x.id!==id);
-  persist(); renderCart();
+
+function changeQuantity(id,delta){
+  const item=cart.find(x=>Number(x.id)===Number(id));
+  if(!item)return;
+  item.qty=Number(item.qty||1)+delta;
+  if(item.qty<=0)cart=cart.filter(x=>Number(x.id)!==Number(id));
+  saveStorage();
+  renderCart();
+  renderCartPage();
 }
-function removeCart(id) {
-  cart = cart.filter(x=>x.id!==id);
-  persist(); renderCart();
+
+function removeFromCart(id){
+  cart=cart.filter(x=>Number(x.id)!==Number(id));
+  saveStorage();
+  renderCart();
+  renderCartPage();
 }
-function getTotals() {
-  const subtotal = cart.reduce((sum,item)=>{
-    const p=products.find(p=>p.id===item.id);
-    return sum+(p ? Number(p.price)*item.qty : 0);
+
+function clearCart(){
+  if(!cart.length)return;
+  if(!confirm("কার্টের সব প্রোডাক্ট মুছে ফেলবে?"))return;
+  cart=[];
+  activeCoupon="";
+  document.getElementById("couponInput").value="";
+  document.getElementById("couponMessage").textContent="";
+  saveStorage();
+  renderCart();
+  renderCartPage();
+}
+
+function getTotals(){
+  const subtotal=cart.reduce((sum,item)=>{
+    const p=products.find(p=>Number(p.id)===Number(item.id));
+    return sum+(p?Number(p.price)*Number(item.qty||1):0);
   },0);
-  const pct = coupons[activeCoupon] || 0;
-  const discount = Math.round(subtotal*pct)/100;
-  return {subtotal,discount,total:Math.max(0,subtotal-discount),pct};
+  const percent=Number(coupons[activeCoupon]||0);
+  const discount=Math.round(subtotal*percent)/100;
+  return {subtotal,percent,discount,total:Math.max(0,subtotal-discount)};
 }
-function renderCart() {
-  cart = cart.filter(item=>products.some(p=>p.id===item.id));
-  document.getElementById("cartCount").textContent =
-    cart.reduce((s,x)=>s+x.qty,0);
-  document.getElementById("cartItems").innerHTML = cart.map(item=>{
-    const p=products.find(p=>p.id===item.id);
+
+function renderCart(){
+  cart=cart.filter(item=>products.some(p=>Number(p.id)===Number(item.id)));
+  document.getElementById("cartCount").textContent=cart.reduce((sum,item)=>sum+Number(item.qty||1),0);
+
+  document.getElementById("cartItems").innerHTML=cart.map(item=>{
+    const p=products.find(p=>Number(p.id)===Number(item.id));
     return `<div class="cart-item">
-      <strong>${esc(p.name)}</strong><br>
-      <span class="muted">₹${money(p.price)} × ${item.qty}</span>
-      <div class="row" style="margin-top:7px">
-        <button onclick="changeQty(${p.id},-1)">−</button>
-        <span>${item.qty}</span>
-        <button onclick="changeQty(${p.id},1)">+</button>
-        <button onclick="removeCart(${p.id})">Remove</button>
+      <strong>${escapeHTML(p.name)}</strong>
+      <p class="muted">₹${money(p.price)} × ${Number(item.qty)}</p>
+      <div class="row">
+        <button onclick="changeQuantity(${Number(p.id)},-1)">−</button>
+        <span>${Number(item.qty)}</span>
+        <button onclick="changeQuantity(${Number(p.id)},1)">+</button>
+        <button onclick="removeFromCart(${Number(p.id)})">Remove</button>
       </div>
     </div>`;
-  }).join("") || "<p class='muted'>তোমার কার্ট খালি।</p>";
+  }).join("")||"<p class='muted'>তোর কার্ট খালি। প্রোডাক্ট যোগ কর!</p>";
+
   const t=getTotals();
   document.getElementById("subtotal").textContent=money(t.subtotal);
   document.getElementById("discount").textContent=money(t.discount);
-  document.getElementById("total").textContent=money(t.total);
-  persist();
+  document.getElementById("grandTotal").textContent=money(t.total);
+  saveStorage();
 }
-function applyCoupon() {
-  const code=document.getElementById("coupon").value.trim().toUpperCase();
-  const msg=document.getElementById("couponMsg");
-  if(coupons[code]) {
+
+function renderCartPage(){
+  document.getElementById("cartPageItems").innerHTML=cart.map(item=>{
+    const p=products.find(p=>Number(p.id)===Number(item.id));
+    if(!p)return "";
+    return `<div class="card">
+      <h3>${escapeHTML(p.name)}</h3>
+      <p>₹${money(p.price)} × ${Number(item.qty)}</p>
+      <div class="row">
+        <button onclick="changeQuantity(${Number(p.id)},-1)">−</button>
+        <button onclick="changeQuantity(${Number(p.id)},1)">+</button>
+        <button onclick="removeFromCart(${Number(p.id)})">Remove</button>
+      </div>
+    </div>`;
+  }).join("")||"<p>কার্ট খালি।</p>";
+}
+
+function applyCoupon(){
+  const code=document.getElementById("couponInput").value.trim().toUpperCase();
+  const message=document.getElementById("couponMessage");
+  if(Object.prototype.hasOwnProperty.call(coupons,code)&&Number(coupons[code])>0&&Number(coupons[code])<=15){
     activeCoupon=code;
-    msg.textContent=`${code} applied: ${coupons[code]}% discount`;
-  } else {
+    message.textContent=code+" applied — "+coupons[code]+"% discount!";
+  }else{
     activeCoupon="";
-    msg.textContent="কুপন কোড সঠিক নয়।";
+    message.textContent="❌ কুপন কোড সঠিক নয়।";
   }
   renderCart();
 }
-function orderWhatsApp() {
-  if(!cart.length) return alert("আগে কার্টে প্রোডাক্ট যোগ করো।");
+
+function checkout(){
+  if(!cart.length){alert("আগে কার্টে প্রোডাক্ট যোগ কর!");return;}
   const t=getTotals();
   const lines=cart.map(item=>{
-    const p=products.find(p=>p.id===item.id);
-    return `• ${p.name} — ₹${p.price} × ${item.qty} = ₹${p.price*item.qty}`;
-  });
-  const message = `ZOGGY KARTUN — Order Request\n\n${lines.join("\n")}\n\nSubtotal: ₹${t.subtotal}\nCoupon: ${activeCoupon || "None"}\nDiscount: ₹${t.discount} (${t.pct}%)\nFinal Total: ₹${t.total}\n\nPlease confirm payment method and order details.`;
+    const p=products.find(p=>Number(p.id)===Number(item.id));
+    return p?`${p.name} — ₹${p.price} × ${item.qty} = ₹${p.price*item.qty}`:"";
+  }).filter(Boolean);
+
+  const message=[
+    "ZOGGY KARTUN — ORDER REQUEST",
+    "",
+    ...lines,
+    "",
+    "Subtotal: ₹"+t.subtotal,
+    "Coupon: "+(activeCoupon||"None"),
+    "Discount: ₹"+t.discount+" ("+t.percent+"%)",
+    "Final Total: ₹"+t.total,
+    "",
+    "Please confirm order and payment details."
+  ].join("\n");
+
   window.open("https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(message),"_blank");
 }
-function sendCustom() {
+
+function toggleWishlist(id){
+  if(wishlist.includes(id))wishlist=wishlist.filter(x=>x!==id);
+  else wishlist.push(id);
+  saveStorage();
+  renderWishlist();
+}
+
+function renderWishlist(){
+  const list=products.filter(p=>wishlist.includes(p.id));
+  document.getElementById("wishlistGrid").innerHTML=list.map(p=>`
+    <div class="card">
+      <div class="photos">${productImages(p)}</div>
+      <h3>${escapeHTML(p.name)}</h3><p class="price">₹${money(p.price)}</p>
+      <div class="row">
+        <button onclick="addToCart(${Number(p.id)})">Add to Cart</button>
+        <button onclick="toggleWishlist(${Number(p.id)})">Remove</button>
+      </div>
+    </div>`).join("")||"<p>Wishlist খালি।</p>";
+}
+
+function sendCustomOrder(){
   const name=document.getElementById("customerName").value.trim();
   const type=document.getElementById("customType").value;
   const details=document.getElementById("customDetails").value.trim();
   const budget=document.getElementById("customBudget").value.trim();
-  if(!details) return alert("কাজের বিস্তারিত লিখে দাও।");
-  const msg=`ZOGGY KARTUN — Custom Work Request\nName: ${name || "Not provided"}\nWork: ${type}\nDetails: ${details}\nBudget: ${budget ? "₹"+budget : "Not provided"}`;
-  window.open("https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(msg),"_blank");
+  if(!details){alert("কাজের বিস্তারিত লিখে দে।");return;}
+  if(budget&&(!Number.isFinite(Number(budget))||Number(budget)<0)){alert("বাজেট সঠিক নয়।");return;}
+  const message=`ZOGGY KARTUN — CUSTOM ORDER\nName: ${name||"Not provided"}\nWork: ${type}\nDetails: ${details}\nBudget: ${budget?"₹"+budget:"Not specified"}`;
+  window.open("https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(message),"_blank");
 }
-function toggleWish(id) {
-  wishlist = wishlist.includes(id) ? wishlist.filter(x=>x!==id) : [...wishlist,id];
-  persist(); renderWishlist();
+
+function resetProductForm(){
+  ["editId","pName","pPrice","pOriginalPrice","pDescription","pLicense","pFile","image1","image2","image3"].forEach(id=>{
+    document.getElementById(id).value="";
+  });
 }
-function renderWishlist() {
-  const list=products.filter(p=>wishlist.includes(p.id));
-  document.getElementById("wishItems").innerHTML=list.map(p=>`
-    <div class="card"><h3>${esc(p.name)}</h3><p>₹${money(p.price)}</p>
-    <button onclick="addCart(${p.id})">Add to Cart</button>
-    <button onclick="toggleWish(${p.id})">Remove</button></div>`).join("")
-    || "<p>Wishlist খালি।</p>";
-}
-function clearForm() {
-  ["editId","pname","pprice","pdesc","plicense","pfile","img1","img2","img3"]
-    .forEach(id=>document.getElementById(id).value="");
-}
-async function readImage(input) {
-  const file=input.files && input.files[0];
-  if(!file) return null;
-  if(file.size>1200000) throw new Error("প্রতিটি ছবি 1.2 MB-এর কম রাখো।");
-  return await new Promise((resolve,reject)=>{
+
+function readImage(input){
+  return new Promise((resolve,reject)=>{
+    const file=input.files&&input.files[0];
+    if(!file){resolve(null);return;}
+    if(!file.type.startsWith("image/")){reject(new Error("শুধু ছবি আপলোড কর।"));return;}
+    if(file.size>900000){reject(new Error("প্রতিটি ছবি 900 KB-এর কম রাখ।"));return;}
     const reader=new FileReader();
     reader.onload=()=>resolve(reader.result);
-    reader.onerror=reject;
+    reader.onerror=()=>reject(new Error("ছবি পড়া যায়নি।"));
     reader.readAsDataURL(file);
   });
 }
-async function saveProduct() {
-  const name=document.getElementById("pname").value.trim();
-  const price=Number(document.getElementById("pprice").value);
-  if(!name || !Number.isFinite(price) || price<0)
-    return alert("প্রোডাক্টের নাম ও সঠিক দাম দাও।");
-  try {
-    const id=Number(document.getElementById("editId").value);
-    const old=products.find(p=>p.id===id);
-    const images=[0,1,2].map((_,i)=>old?.images?.[i] || "");
-    for(let i=0;i<3;i++) {
-      const val=await readImage(document.getElementById("img"+(i+1)));
-      if(val) images[i]=val;
+
+async function saveProduct(){
+  const name=document.getElementById("pName").value.trim();
+  const price=Number(document.getElementById("pPrice").value);
+  const originalValue=document.getElementById("pOriginalPrice").value;
+  const originalPrice=originalValue===""?0:Number(originalValue);
+  if(!name){alert("প্রোডাক্টের নাম লিখ।");return;}
+  if(document.getElementById("pPrice").value===""||!Number.isFinite(price)||price<0){alert("সঠিক দাম লিখ।");return;}
+  if(!Number.isFinite(originalPrice)||originalPrice<0){alert("Original Price সঠিক নয়।");return;}
+
+  try{
+    const editId=Number(document.getElementById("editId").value);
+    const old=products.find(p=>p.id===editId);
+    const images=[0,1,2].map(i=>old&&old.images?old.images[i]||"": "");
+    for(let i=0;i<3;i++){
+      const uploaded=await readImage(document.getElementById("image"+(i+1)));
+      if(uploaded)images[i]=uploaded;
     }
-    const p={
-      id:old ? old.id : Date.now(),
+
+    const product={
+      id:old?old.id:Date.now(),
       name,
-      category:document.getElementById("pcat").value,
+      category:document.getElementById("pCategory").value,
       price,
-      desc:document.getElementById("pdesc").value.trim(),
-      license:document.getElementById("plicense").value.trim(),
-      file:document.getElementById("pfile").value.trim(),
+      originalPrice,
+      description:document.getElementById("pDescription").value.trim(),
+      license:document.getElementById("pLicense").value.trim(),
+      file:document.getElementById("pFile").value.trim(),
       images
     };
-    if(old) products=products.map(x=>x.id===old.id?p:x);
-    else products.push(p);
-    persist(); clearForm(); renderAll();
-    alert("প্রোডাক্ট সেভ হয়েছে।");
-  } catch(e) { alert(e.message || "ছবি আপলোড করা যায়নি।"); }
+
+    if(old)products=products.map(p=>p.id===old.id?product:p);
+    else products.push(product);
+
+    if(!saveStorage())return;
+    resetProductForm();
+    renderAll();
+    alert("✅ প্রোডাক্ট সেভ হয়েছে!");
+  }catch(e){alert(e.message||"প্রোডাক্ট সেভ করা যায়নি।");}
 }
-function editProduct(id) {
-  const p=products.find(p=>p.id===id); if(!p)return;
+
+function editProduct(id){
+  const p=products.find(p=>p.id===id);
+  if(!p)return;
   document.getElementById("editId").value=p.id;
-  document.getElementById("pname").value=p.name;
-  document.getElementById("pcat").value=p.category;
-  document.getElementById("pprice").value=p.price;
-  document.getElementById("pdesc").value=p.desc;
-  document.getElementById("plicense").value=p.license||"";
-  document.getElementById("pfile").value=p.file||"";
+  document.getElementById("pName").value=p.name;
+  document.getElementById("pCategory").value=p.category;
+  document.getElementById("pPrice").value=p.price;
+  document.getElementById("pOriginalPrice").value=p.originalPrice||"";
+  document.getElementById("pDescription").value=p.description||"";
+  document.getElementById("pLicense").value=p.license||"";
+  document.getElementById("pFile").value=p.file||"";
   window.scrollTo({top:0,behavior:"smooth"});
 }
-function deleteProduct(id) {
-  if(!confirm("এই প্রোডাক্ট মুছে ফেলবে?")) return;
+
+function deleteProduct(id){
+  if(!confirm("প্রোডাক্টটি মুছে ফেলবি?"))return;
   products=products.filter(p=>p.id!==id);
-  cart=cart.filter(x=>x.id!==id);
+  cart=cart.filter(item=>item.id!==id);
   wishlist=wishlist.filter(x=>x!==id);
-  persist(); renderAll();
+  if(!saveStorage())return;
+  renderAll();
 }
-function renderAdmin() {
-  document.getElementById("adminProducts").innerHTML=products.map(p=>`
-    <div class="cart-item"><strong>${esc(p.name)}</strong> — ₹${money(p.price)}
-    <div class="row"><button onclick="editProduct(${p.id})">Edit</button>
-    <button onclick="deleteProduct(${p.id})">Delete</button></div></div>`).join("");
-  document.getElementById("couponAdmin").innerHTML=Object.entries(coupons).map(([code,pct])=>`
-    <div class="cart-item">${esc(code)} — ${pct}%
-    <button onclick="deleteCoupon('${esc(code)}')">Delete</button></div>`).join("");
+
+function duplicateProduct(id){
+  const p=products.find(p=>p.id===id);
+  if(!p)return;
+  products.push({...p,id:Date.now(),name:p.name+" Copy",images:[...(p.images||[])]});
+  if(!saveStorage())return;
+  renderAll();
 }
-function addCoupon() {
-  const code=document.getElementById("newCoupon").value.trim().toUpperCase();
-  const pct=Number(document.getElementById("newPercent").value);
-  if(!/^[A-Z0-9_-]{3,24}$/.test(code)) return alert("সঠিক coupon code লিখো।");
-  if(!Number.isInteger(pct)||pct<1||pct>15) return alert("Discount 1% থেকে 15% হতে হবে।");
+
+function renderAdmin(){
+  document.getElementById("adminProductList").innerHTML=products.map(p=>`
+    <div class="cart-item">
+      <strong>${escapeHTML(p.name)}</strong> — ₹${money(p.price)}
+      <div class="row" style="margin-top:7px">
+        <button onclick="editProduct(${Number(p.id)})">Edit</button>
+        <button onclick="duplicateProduct(${Number(p.id)})">Duplicate</button>
+        <button onclick="deleteProduct(${Number(p.id)})">Delete</button>
+      </div>
+    </div>`).join("")||"<p>এখনও প্রোডাক্ট নেই।</p>";
+
+  document.getElementById("adminCouponList").innerHTML=Object.entries(coupons).map(([code,pct])=>`
+    <div class="cart-item">
+      ${escapeHTML(code)} — ${Number(pct)}%
+      <button onclick="deleteCoupon('${escapeHTML(code)}')">Delete</button>
+    </div>`).join("");
+}
+
+function addCoupon(){
+  const code=document.getElementById("newCouponCode").value.trim().toUpperCase();
+  const pct=Number(document.getElementById("newCouponPercent").value);
+  if(!/^[A-Z0-9_-]{3,24}$/.test(code)){alert("কুপন কোড 3–24 অক্ষরের হতে হবে।");return;}
+  if(!Number.isInteger(pct)||pct<1||pct>15){alert("ছাড় 1% থেকে 15% হতে হবে।");return;}
   coupons[code]=pct;
-  persist(); renderAdmin();
-  document.getElementById("newCoupon").value="";
-  document.getElementById("newPercent").value="";
+  if(!saveStorage())return;
+  document.getElementById("newCouponCode").value="";
+  document.getElementById("newCouponPercent").value="";
+  renderAdmin();
+  alert("কুপন যোগ হয়েছে!");
 }
-function deleteCoupon(code) {
-  if(defaultCoupons[code]) return alert("ডিফল্ট কুপন এই ডেমো থেকে মুছে ফেলা যাবে না।");
+
+function deleteCoupon(code){
+  if(Object.prototype.hasOwnProperty.call(DEFAULT_COUPONS,code)){
+    alert("ডিফল্ট কুপন এই প্যানেল থেকে মুছতে পারবি না।");
+    return;
+  }
   delete coupons[code];
-  if(activeCoupon===code) activeCoupon="";
-  persist(); renderAdmin(); renderCart();
+  if(activeCoupon===code)activeCoupon="";
+  saveStorage();
+  renderAdmin();
+  renderCart();
 }
-function exportBackup() {
+
+function downloadBackup(){
   const data={products,coupons};
   const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
   const url=URL.createObjectURL(blob);
   const a=document.createElement("a");
-  a.href=url;a.download="zoggy-kartun-backup.json";a.click();
-  URL.revokeObjectURL(url);
+  a.href=url;
+  a.download="zoggy-kartun-backup.json";
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
-function renderAll() {
-  renderProducts();renderCart();renderWishlist();renderAdmin();
+
+function restoreBackup(){
+  const file=document.getElementById("backupFile").files[0];
+  if(!file){alert("আগে JSON backup file বেছে নে।");return;}
+  const reader=new FileReader();
+  reader.onload=()=>{
+    try{
+      const data=JSON.parse(reader.result);
+      if(!Array.isArray(data.products)||!data.coupons||typeof data.coupons!=="object"){
+        throw new Error("Backup format সঠিক নয়।");
+      }
+      if(!confirm("বর্তমান প্রোডাক্ট ও কুপন backup দিয়ে বদলে যাবে। চালিয়ে যাবি?"))return;
+      products=data.products;
+      coupons=data.coupons;
+      cart=cart.filter(item=>products.some(p=>p.id===item.id));
+      wishlist=wishlist.filter(id=>products.some(p=>p.id===id));
+      if(!saveStorage())return;
+      renderAll();
+      alert("Backup restore হয়েছে!");
+    }catch(e){alert(e.message||"Backup file পড়া যায়নি।");}
+  };
+  reader.readAsText(file);
 }
+
+function renderAll(){
+  renderProducts();
+  renderCart();
+  renderCartPage();
+  renderWishlist();
+  renderAdmin();
+}
+
 document.getElementById("year").textContent=new Date().getFullYear();
+try{
+  if(localStorage.getItem("zk_theme")==="light")document.body.classList.add("light");
+}catch(e){}
 renderAll();
 </script>
+
 </body>
 </html>
